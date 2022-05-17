@@ -1,7 +1,7 @@
 # project_DevOps
 
-first : clone the project. 
+first : clone the project
 
-second : tape the command "npm i". 
+second : cd project_DevOps puis npm i
 
-thrid : launch test unit with "npm run test". 
+thrid : launch test unit with npm run test 
