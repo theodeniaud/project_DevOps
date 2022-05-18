@@ -1,3 +1,4 @@
+name: Test qualite
 on:
 
   push:
@@ -18,3 +19,5 @@ jobs:
       uses: sonarsource/sonarcloud-github-action@master
       env:
         SONAR_TOKEN: f859ee44bcaa1782f943f06b6906e287116dc759
+        SONAR_PROJECT_KEY: theodeniaud_project_DevOps
+        SONAR_ORGANIZATION: theodeniaud
