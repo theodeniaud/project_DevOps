@@ -73,8 +73,8 @@ jobs:
 
   notify:
     - name: Discord notification
-    env:
-      DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-    uses: Ilshidur/action-discord@master
-    with:
-      args: 'Hello World !'
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      uses: Ilshidur/action-discord@master
+      with:
+        args: 'Hello World !'
