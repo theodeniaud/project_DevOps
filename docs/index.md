@@ -4,7 +4,34 @@ Cette documentation a été réalisé par Théo DENIAUD, avec la collaboration d
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+### Test Gitlab
+La version Gitlab CI/CD est payante. Nous avons tenté de déployer nos propres runners pour nos tests mais étant donné le peu de temps, nous avons préférer passer sur Github Actions.
+![GitLabCI](/docs/assets/img/test_gitlab_CI.png)
+![RegisterRunner](/docs/assets/img/register_runner.png)
+![AvailableRunner](/docs/assets/img/available_runner.png)
+
+### Phase de test 
+
+Afin d'éffectuer le premier test unitaire nous le lancons manuellement via npm run test
+![FirstTest](/docs/assets/img/first_test.png)
+
+Afin d'automatiser cette action nous allons implémenter dans le dorker file le lancement du test dans le conteneur afin de valider le bon fonctionement
+![TestUnitaire](/docs/assets/img/test_unitaire.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
