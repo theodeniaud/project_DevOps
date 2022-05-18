@@ -4,8 +4,7 @@ COPY . /app
 
 WORKDIR /app
 
-RUN useradd -u 8877 test
-USER test
+USER node
 
 RUN npm install
 RUN npm run test
