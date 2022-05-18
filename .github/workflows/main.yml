@@ -38,7 +38,7 @@ jobs:
         with:
           name: security report
           path: security.txt
-        retention-days: 5
+          retention-days: 5
   sonarcloud:
     name: Test de qualité
     runs-on: ubuntu-latest
