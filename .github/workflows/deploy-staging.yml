@@ -1,7 +1,5 @@
 name: Deployment staging
 
-concurrency: staging
-
 on:
   push:
     branches: [ dev ]

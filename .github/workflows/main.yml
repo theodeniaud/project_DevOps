@@ -1,4 +1,4 @@
-name: Test unitaire, sécurité, qualité
+name: Test unitaire, sécurité, qualité, build
 on:
   push:
     branches: [ dev ]
