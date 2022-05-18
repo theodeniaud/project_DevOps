@@ -14,7 +14,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file test.Dockerfile --tag test:$(date +%s)
   
   security:
     name: Test de sécurité
@@ -40,13 +40,16 @@ jobs:
           name: security report
           path: security.txt
           retention-days: 5
+      - name: Test npm 
+        run: docker build . --file secure.Dockerfile --tag secure:$(date +%s)
+          
+  
   sonarcloud:
     name: Test de qualité
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
-      # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
       - name: SonarCloud Scan
         uses: sonarsource/sonarcloud-github-action@master

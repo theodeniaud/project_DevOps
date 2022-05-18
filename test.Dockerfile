@@ -9,4 +9,5 @@ USER node
 RUN npm install
 RUN npm run test
 
+
 ENTRYPOINT ["npm", "run", "start"]
