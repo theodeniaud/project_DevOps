@@ -38,7 +38,8 @@ jobs:
           # Rediriger la sortie vers un fichier security.txt
           output: security.txt
       
-      - name: Check file existence
+      - if: always()
+        name: Check file existence
         id: check_files
         uses: andstor/file-existence-action@v1
         with:
