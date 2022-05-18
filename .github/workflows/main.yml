@@ -72,9 +72,10 @@ jobs:
           npm run build --if-present
 
   notify:
-    - name: Discord notification
-      env:
-        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-      uses: Ilshidur/action-discord@master
-      with:
-        args: 'Hello World !'
+    name: Discord notification
+    env:
+      DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+    steps:
+      - uses: Ilshidur/action-discord@master
+        with:
+          args: 'Hello World !'
