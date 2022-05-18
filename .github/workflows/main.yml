@@ -1,4 +1,6 @@
 name: Test unitaire, sécurité, qualité, build
+
+# Lors d'un changement sur la branche dev 
 on:
   push:
     branches: [ dev ]
@@ -9,8 +11,8 @@ jobs:
 
   test:
     name: Test unitaire
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-latest 
+    # Lancer le test unitaire par l'intermédiaire d'une image Docker 
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
@@ -18,11 +20,12 @@ jobs:
   
   security:
     name: Test de sécurité
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Lancer le test de sécurité via Trivy
       - name: Run Trivy vulnerability scanner in IaC mode
         uses: aquasecurity/trivy-action@master
         with:
@@ -32,9 +35,18 @@ jobs:
           exit-code: '1'
           ignore-unfixed: true
           severity: 'CRITICAL,HIGH'
+          # Rediriger la sortie vers un fichier security.txt
           output: security.txt
-      - if: always()
-        name: Upload artifact
+      
+      - name: Check file existence
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "security.txt"
+
+      - name: File exists
+        if: steps.check_files.outputs.files_exists == 'true'
+        # Only runs if all of the files exists
         uses: actions/upload-artifact@v2
         with:
           name: security report
@@ -42,7 +54,7 @@ jobs:
           retention-days: 5
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
-        continue-on-error: true # To make sure that SARIF upload gets called
+        continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
