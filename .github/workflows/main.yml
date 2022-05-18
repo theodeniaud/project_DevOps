@@ -43,10 +43,9 @@ jobs:
         uses: andstor/file-existence-action@v1
         with:
           files: "security.txt"
-
+      # Si le fichier existe
       - name: File exists
         if: steps.check_files.outputs.files_exists == 'true'
-        # Only runs if all of the files exists
         uses: actions/upload-artifact@v2
         with:
           name: security report
