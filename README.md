@@ -1,6 +1,6 @@
 # project_DevOps
 
-TP DEVOP avec Théo DENIAUD et Thibault LONG
+TP DEVOP avec Théo DENIAUD, Thibault LONG et Tanguy PICHON
 
 first : clone the project
 

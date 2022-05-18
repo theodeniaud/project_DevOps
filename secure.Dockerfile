@@ -7,6 +7,6 @@ WORKDIR /app
 RUN chown -R node:node /app
 USER node
 RUN npm install
-RUN npm run test
+
 
 ENTRYPOINT ["npm", "run", "start"]

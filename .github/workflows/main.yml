@@ -1,4 +1,6 @@
 name: Test unitaire, sécurité, qualité, build
+
+# Lors d'un changement sur la branche dev 
 on:
   push:
     branches: [ dev ]
@@ -9,20 +11,21 @@ jobs:
 
   test:
     name: Test unitaire
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-latest 
+    # Lancer le test unitaire par l'intermédiaire d'une image Docker 
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file test.Dockerfile --tag test:$(date +%s)
   
   security:
     name: Test de sécurité
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Lancer le test de sécurité via Trivy
       - name: Run Trivy vulnerability scanner in IaC mode
         uses: aquasecurity/trivy-action@master
         with:
@@ -32,14 +35,29 @@ jobs:
           exit-code: '1'
           ignore-unfixed: true
           severity: 'CRITICAL,HIGH'
+          # Rediriger la sortie vers un fichier security.txt
           output: security.txt
+      
       - if: always()
-        name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
           name: security report
           path: security.txt
           retention-days: 5
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --sarif-file-output=snyk.sarif
+        if: always()
+      - name: Upload result to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: snyk.sarif
+          
+  
   sonarcloud:
     name: Test de qualité
     runs-on: ubuntu-latest
@@ -73,6 +91,7 @@ jobs:
   notify:
     name: Discord notification
     runs-on: ubuntu-latest
+    needs: build
     env:
       DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
     steps:
