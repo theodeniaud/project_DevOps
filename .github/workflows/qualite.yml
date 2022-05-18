@@ -26,4 +26,5 @@ jobs:
           -Dsonar.verbose=true
       env:
         SONAR_TOKEN: f859ee44bcaa1782f943f06b6906e287116dc759
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
        
