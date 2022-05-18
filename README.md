@@ -1,5 +1,7 @@
 # project_DevOps
 
+TP DEVOP avec Théo DENIAUD et Thibault LONG
+
 first : clone the project
 
 second : cd project_DevOps puis npm i
