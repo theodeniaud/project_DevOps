@@ -70,4 +70,38 @@ jobs:
         run: |
           npm install
           npm run build --if-present
-          npm test
+
+---
+name: Deployment staging
+
+concurrency: staging
+
+on:
+  push:
+    branches: [ dev ]
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    environment: staging
+    needs: build
+    steps:
+      - name: deploy
+
+---
+
+name: Deployment production
+
+concurrency: production
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    environment: production
+    needs: build
+    steps:
+      - name: deploy
