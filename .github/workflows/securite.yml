@@ -29,10 +29,4 @@ jobs:
           name: security report
           path: security.txt
           retention-days: 5
-
-      - name: Upload Trivy scan results to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: 'trivy-results.sarif'
-      
       
