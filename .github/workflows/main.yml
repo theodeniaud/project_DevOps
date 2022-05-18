@@ -39,6 +39,7 @@ jobs:
           output: security.txt
       
       - if: always()
+        runs-on: ubuntu-latest
         steps:
           - name: Check file existence
             id: check_files
