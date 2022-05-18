@@ -17,7 +17,14 @@ jobs:
         fetch-depth: 0
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
+      with:
+        projectBaseDir: my-custom-directory
+        args: >
+          -Dsonar.organization=theodeniaud
+          -Dsonar.projectKey=theodeniaud_project_DevOps
+          -Dsonar.python.coverage.reportPaths=coverage.xml
+          -Dsonar.tests=tests/
+          -Dsonar.verbose=true
       env:
         SONAR_TOKEN: f859ee44bcaa1782f943f06b6906e287116dc759
-        SONAR_PROJECT_KEY: theodeniaud_project_DevOps
-        SONAR_ORGANIZATION: theodeniaud
+       
