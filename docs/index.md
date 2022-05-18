@@ -1,6 +1,6 @@
-## Welcome to GitHub Pages
+## TP DevOps - CI/CD GitOPS
 
-You can use the [editor on GitHub](https://github.com/theodeniaud/project_DevOps/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Cette documentation a été réalisé par Théo DENIAUD, avec la collaboration de Thibault LONG et Tanguy PICHON.
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
