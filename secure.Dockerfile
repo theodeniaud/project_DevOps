@@ -7,8 +7,7 @@ WORKDIR /app
 RUN chown -R node:node /app
 USER node
 RUN npm install
-RUN npm install https://github.com/spaceraccoon/npm-scan.git
-RUN npx npm-scan
+RUN npm run scan
 
 
 ENTRYPOINT ["npm", "run", "start"]
